@@ -1,0 +1,61 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td{
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    Nombre de lignes : </h3><input id='row' type="text">
+    <br><br>
+    Nombre de colonnes : </h3><input id='col' type="text">
+    <br><br>
+    <input type="button" value="afficher" onclick="afficherTable()">
+    <br>
+    <div id="out">
+
+    </div>
+    <script>
+        function makeTable(lignes,colonnes) {
+            var tab='<br><br><table>';
+            for(var i=0;i<lignes;i++)
+            {
+                tab+="<tr>";
+                for(var j=0;j<colonnes;j++)
+                {
+                    tab+='<td onclick="colorer(this)"></td>';
+                }
+                tab+="</tr>";
+            }
+            tab+="</table>";
+            return tab;
+        }
+
+        function afficherTable() {
+            var row=document.querySelector('#row').value;
+            var col=document.querySelector('#col').value;
+            var afficher=document.querySelector('#out');
+            afficher.innerHTML=makeTable(row,col);
+        }
+
+        function getRandomColor() {
+            var color = Math.floor(Math.random() * 16777215);
+            return color.toString(16);
+        }
+
+        function colorer(td) {
+            td.style.backgroundColor=getRandomColor();
+        }
+    </script>
+</body>
+</html>
